@@ -1,0 +1,44 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b96b89334a9236e4bbc8b544ed894a1c, type: 3}
+  m_Name: Settings
+  m_EditorClassIdentifier: 
+  secondsPerBlock: 3300
+  blocksForFullTank: 4
+  allColorPacks:
+  - {fileID: 11400000, guid: db032b72f8d48b94a9c85f83d83fa29d, type: 2}
+  - {fileID: 11400000, guid: ae50d264f55ef3342ac78b386a1b1158, type: 2}
+  - {fileID: 11400000, guid: 85fe401ef04a09149a6b41eef313a340, type: 2}
+  - {fileID: 11400000, guid: 257933b087b0a9b4bbbd34cebe66737d, type: 2}
+  - {fileID: 11400000, guid: ac25d2d67ae00a740b95a57d45b9c73a, type: 2}
+  - {fileID: 11400000, guid: d5abb6f72b015f64ab09851c999a09d3, type: 2}
+  maxBlocksAboveTarget: 0
+  rocketFlightTime: 21.57
+  mineHeight: 2.5
+  greenTargetColor: {r: 0, g: 1, b: 0.00063085556, a: 1}
+  targetColors:
+  - {r: 1, g: 1, b: 0, a: 1}
+  - {r: 1, g: 0.6666667, b: 0, a: 1}
+  - {r: 1, g: 0.33333334, b: 0, a: 1}
+  - {r: 1, g: 0, b: 0, a: 1}
+  - {r: 0.7075472, g: 0.0038142616, b: 0.08965809, a: 1}
+  - {r: 0.3773585, g: 0.0198342, b: 0.11631648, a: 1}
+  tankLevels:
+  - 10
+  - 20
+  - 50
+  - 100
+  - 200
+  - 300
+  - 500
+  - 1000
+  tankSize: 5

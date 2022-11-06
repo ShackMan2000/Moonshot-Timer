@@ -1,0 +1,28 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1bfadac6931ed594591ea909bdccb3e8, type: 3}
+  m_Name: Blue
+  m_EditorClassIdentifier: 
+  mainColor: {r: 0.0039215647, g: 0.16762622, b: 0.972549, a: 1}
+  gemBaseColor: {r: 0, g: 2.5976276, b: 24.721567, a: 0}
+  gemDarkColor: {r: 0.10306159, g: 0.11239871, b: 0.3962264, a: 0}
+  gemHighlightColor: {r: 0.6846361, g: 0.74504954, b: 1, a: 0}
+  shadowHueShift: 0.33
+  shadowValueShift: -1.23
+  shadowSaturationShift: 0.58
+  highlightHueShift: -0.5
+  highlightValueShift: 4.18
+  highlightSaturationShift: -3.48
+  frameHueShift: 0
+  frameValueShift: -7.86
+  frameSaturationShift: -6.27
+  UID: dd0de9562b8e5b9438aaffdf6fcdebbb
