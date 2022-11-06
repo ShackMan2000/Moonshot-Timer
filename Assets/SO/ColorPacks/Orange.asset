@@ -1,0 +1,28 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1bfadac6931ed594591ea909bdccb3e8, type: 3}
+  m_Name: Orange
+  m_EditorClassIdentifier: 
+  mainColor: {r: 0.9339623, g: 0.29346898, b: 0, a: 1}
+  gemBaseColor: {r: 16.94838, g: 2.1296391, b: 0, a: 0}
+  gemDarkColor: {r: 0.41509432, g: 0.107587114, b: 0, a: 0}
+  gemHighlightColor: {r: 1, g: 0.4586179, b: 0.005390823, a: 0}
+  shadowHueShift: -0.79
+  shadowValueShift: -2.42
+  shadowSaturationShift: 0.75
+  highlightHueShift: 3.19
+  highlightValueShift: 48.34
+  highlightSaturationShift: -15.62
+  frameHueShift: 0
+  frameValueShift: -9.7
+  frameSaturationShift: 2.06
+  UID: 38974be5b86411649a03dd06228ea097
