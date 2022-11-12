@@ -93,7 +93,7 @@ public class TargetInfo : MonoBehaviour
 
     void UpdateTargetText()
     {
-        targetText.text = "T: " + (data.miningTargetPercent * 100f).ToString("F0") + "%";
+        targetText.text = (data.miningTargetPercent * 100f).ToString("F0");
     }
 
 
