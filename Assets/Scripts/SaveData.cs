@@ -12,7 +12,7 @@ public class SaveData {
 
     public string beginning, lastReset;      
 
-    public List<MineData> activeMinesData;
+    public List<MineData> activeMinesData = new List<MineData>();
   //  public List<MineData> archivedMinesData;
     //   public float timePassed;
 

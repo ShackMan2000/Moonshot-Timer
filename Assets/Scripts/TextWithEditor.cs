@@ -4,6 +4,7 @@ using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
 using System;
+using Sirenix.OdinInspector;
 
 public class TextWithEditor : MonoBehaviour
 {
@@ -209,8 +210,25 @@ public class TextWithEditor : MonoBehaviour
     //}
 
 
+    public int nCounter;
+    public int vCounter;
 
 
+    private void Update()
+    {
+        if(Input.GetKeyDown(KeyCode.Space))
+        {
+            ValidateInput("g");
+            //set text to none
+        }
+    }
 
+    private void ValidateInput(string input)
+    {
+        if (input == "n")
+            nCounter++;
+        else if (input == "v")
+            vCounter++;
 
+    }
 }
