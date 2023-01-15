@@ -8,13 +8,29 @@ using UnityEngine.UI;
 
 public class SaveManager : MonoBehaviour
 {
-
     // need 2 saves, always alternate
     // just save the time, Time.Time should be enough
 
     // when loading the game, get both. if one is empty, use the other one.
-  
 
+    // public void SaveData()
+    // {
+    //     try
+    //     {
+    //         string json = JsonConvert.SerializeObject(example);
+    //         File.WriteAllText(savePath, json, Encoding.UTF8, FileOptions.WriteThrough);
+    //         Debug.Log("Data saved successfully!");
+    //     }
+    //     catch (IOException e)
+    //     {
+    //         Debug.LogError("Error saving data: " + e.Message);
+    //         // You can implement a recovery strategy here, such as saving to a backup location or retrying the save operation.
+    //     }
+    //     catch (Exception e)
+    //     {
+    //         Debug.LogError("Error saving data: " + e.Message);
+    //     }
+    // }
 
     string gameDataFileName0 = "save0.json";
     string gameDataFileName1 = "save1.json";
@@ -27,11 +43,9 @@ public class SaveManager : MonoBehaviour
 
     public bool saveGameLoaded;
 
-    [SerializeField]
-    private int currentDataID;
+    [SerializeField] private int currentDataID;
 
-    [SerializeField]
-    private float saveIntervall;
+    [SerializeField] private float saveIntervall;
 
     public static event Action<SaveData> OnSaveDataReady = delegate { };
 
@@ -43,37 +57,47 @@ public class SaveManager : MonoBehaviour
     }
 
 
-
     private void GetSaveFromDisk()
     {
-
-
-
         string data0AsJson = FileManager.ReadFile(gameDataFileName0);
         string data1AsJson = FileManager.ReadFile(gameDataFileName1);
 
+        bool loadedSave = true;
+
+        //data seems to get corrupted when PC crashes. This can handle it
+
+        try
+        {
+            saveData = JsonUtility.FromJson<SaveData>(data0AsJson);
+        }
+        catch (Exception e)
+        {
+            loadedSave = false;
+            Debug.Log("couldn't load save 0" + e);
+        }
+
+        if (!loadedSave)
+            try
+            {
+                saveData = JsonUtility.FromJson<SaveData>(data1AsJson);
+            }
+            catch (Exception e)
+            {
+                loadedSave = false;
+            }
 
 
         //never saved before
-        if (data0AsJson == null && data1AsJson == null)
+        if (!loadedSave)
         {
             saveData = new SaveData();
         }
-        else
-        {
-            if (data0AsJson != string.Empty)
-                saveData = JsonUtility.FromJson<SaveData>(data0AsJson);
-            else if(data1AsJson != string.Empty)
-                saveData = JsonUtility.FromJson<SaveData>(data1AsJson);
-            else
-                saveData = new SaveData();
 
-        }
+
         Data = saveData;
 
         OnSaveDataReady(saveData);
     }
-
 
 
     private IEnumerator SaveRoutine()
@@ -112,8 +136,6 @@ public class SaveManager : MonoBehaviour
     }
 
 
-
-
     [Button]
     void ClearSaveData()
     {
@@ -122,21 +144,8 @@ public class SaveManager : MonoBehaviour
     }
 
 
-
     private void OnMineGotDeleted(MineData deletedMine)
     {
         saveData.activeMinesData.Remove(deletedMine);
     }
-
-
 }
-
-
-
-
-
-
-
-
-
-

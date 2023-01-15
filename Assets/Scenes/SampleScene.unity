@@ -12077,8 +12077,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ea26e31fe071f324f8d482e9092859c4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameDataFileName0: 
-  gameDataFileName1: 
   saveData:
     beginningIsMarked: 0
     beginning: 
