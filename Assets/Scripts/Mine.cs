@@ -46,7 +46,7 @@ public class Mine : MonoBehaviour, IClickable
     public event Action OnMineStarted = delegate { };
     public event Action OnMineStopped = delegate { };
     public event Action OnProgressMade = delegate { };
-    public static event Action OnBlockFinished = delegate {  }; 
+    public static event Action<Mine> OnBlockFinished = delegate {  }; 
 
   //  public static event Action OnAnyMineStarted = delegate { };
     public static event Action OnAnyProgressMade = delegate { };
@@ -90,12 +90,15 @@ public class Mine : MonoBehaviour, IClickable
     [ContextMenu("update")]
     private void UpdatePerDaysLists()
     {
-        if (DayManager.daysSinceBeginning >= data.secondsMinedPerDay.Count)
+        if (DayManager.daysSinceBeginning >= data.distractedSecondsMinedPerDay.Count)
         {
-            for (int i = data.secondsMinedPerDay.Count; i <= DayManager.daysSinceBeginning; i++)
+            for (int i = data.distractedSecondsMinedPerDay.Count; i <= DayManager.daysSinceBeginning; i++)
             {
-                if (i >= data.secondsMinedPerDay.Count)
-                    data.secondsMinedPerDay.Add(0f);
+                if (i >= data.distractedSecondsMinedPerDay.Count)
+                {
+                    data.distractedSecondsMinedPerDay.Add(0f);
+                    data.focusedSecondsMinedPerDay.Add(0f);
+                }
             }
         }
     }
@@ -128,6 +131,7 @@ public class Mine : MonoBehaviour, IClickable
     }
 
 
+    // ReSharper disable Unity.PerformanceAnalysis
     public void Tick(float secondsTicked)
     {
         data.secondsLeftThisCycle -= secondsTicked;
@@ -135,6 +139,7 @@ public class Mine : MonoBehaviour, IClickable
         if (data.secondsLeftThisCycle <= 0f)
         {
             OnBlockFinishedMining();
+            OnBlockFinished(this);
             StopMining();
             Reset();
         }
@@ -144,7 +149,7 @@ public class Mine : MonoBehaviour, IClickable
         }
 
         data.secondsMinedSinceReset += secondsTicked;
-        data.secondsMinedPerDay[data.secondsMinedPerDay.Count - 1] += secondsTicked;
+        data.distractedSecondsMinedPerDay[data.distractedSecondsMinedPerDay.Count - 1] += secondsTicked;
         data.secondsInTank += secondsTicked;
 
         OnAnyProgressMade();
@@ -155,6 +160,22 @@ public class Mine : MonoBehaviour, IClickable
     public void Reset()
     {
         data.secondsLeftThisCycle = settings.secondsPerBlock;
+    }
+
+
+    public void ConvertSecondsToFocusedSeconds()
+    {
+        //if there are more distracted seconds per block than seconds per block, move that amount to focused seconds for current day
+        if (data.distractedSecondsMinedPerDay[^1] > settings.secondsPerBlock)
+        {
+            data.focusedSecondsMinedPerDay[^1] += settings.secondsPerBlock;
+            data.distractedSecondsMinedPerDay[^1] -= settings.secondsPerBlock;
+        }
+        else
+        {
+            data.focusedSecondsMinedPerDay[^1] += data.distractedSecondsMinedPerDay[^1];
+            data.distractedSecondsMinedPerDay[^1] = 0f;
+        }
     }
 
 

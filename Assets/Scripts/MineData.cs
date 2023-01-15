@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 
 [System.Serializable]
@@ -26,8 +27,8 @@ public class MineData
     public float secondsMinedSinceReset;
     public float miningTargetPercent;
 
-    public List<float> secondsMinedPerDay = new List<float>();
-    public List<float> secondsMinedFocusedPerDay = new List<float>();
+    public List<float> distractedSecondsMinedPerDay = new List<float>();
+    public List<float> focusedSecondsMinedPerDay = new List<float>();
 
     public float secondsInTank;
 

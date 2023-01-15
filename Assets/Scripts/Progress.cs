@@ -29,7 +29,7 @@ public class Progress : MonoBehaviour
             for (int i = daysSinceBeginning; i > daysSinceBeginning - daysToCheck; i--)
             {
                 if (i < 0) break;
-                secondsMined += mine.secondsMinedPerDay[i];
+                secondsMined += mine.distractedSecondsMinedPerDay[i];
             }
         }
         return secondsMined;

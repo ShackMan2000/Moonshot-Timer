@@ -1,4 +1,5 @@
 ﻿using System;
+using TMPro;
 using UnityEngine;
 
 
@@ -6,20 +7,39 @@ using UnityEngine;
     {
 
         [SerializeField] GameObject panel;
+        [SerializeField] InspirationQuotes inspirationQuotes;
+        
+        [SerializeField] TextMeshProUGUI quoteText;
+        
         
         //subscribe to mine when finished block event, activate panel object
 
+        Mine mine;
 
         void OnEnable()
         {
             Mine.OnBlockFinished += OpenPanel;
+            quoteText.text = inspirationQuotes.GetRandomQuote();
         }
 
 
 
-        void OpenPanel()
+        void OpenPanel(Mine mine)
         {
+            this.mine = mine;
             panel.gameObject.SetActive(true);
+        }
+        
+        
+        public void ClosePanel(bool wasFocused)
+        {
+            if(wasFocused)
+            {
+                mine.ConvertSecondsToFocusedSeconds();
+            }
+            
+            
+            panel.gameObject.SetActive(false);
         }
 
 
