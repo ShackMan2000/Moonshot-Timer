@@ -47,7 +47,7 @@ public class Rocket : MonoBehaviour, IClickable
 
     private void OnEnable()
     {
-        SaveManager.OnSaveDataReady += _ => SetUpTank();
+        SaveManager.OnSaveDataReady += x => SetUpTank();
         Mine.OnAnyProgressMade += AdjustTankFillSprites;
         Mine.OnAnyColorChanged += CreateSprites;
         fire.SetActive(false);

@@ -20,6 +20,8 @@ public class MineData
     public int id;
     public string mineName, colorName;
 
+    public bool hasTarget;
+
     public float secondsLeftThisCycle;
     public float secondsMinedSinceReset;
     public float miningTargetPercent;

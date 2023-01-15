@@ -35,7 +35,7 @@ public class TargetInfo : MonoBehaviour
     float barHeightWorld;
 
 
-    public bool moveToBar;
+ //   public bool moveToBar;
 
 
     public Transform pointerrrrr;
@@ -45,8 +45,8 @@ public class TargetInfo : MonoBehaviour
         barPosition = fullOpacityBar.transform.position;
        // barPosition.y += fullOpacityBar.rectTransform.sizeDelta.y;
 
-        if (moveToBar)
-            pointerrrrr.transform.position = barPosition;
+        // if (moveToBar)
+        //     pointerrrrr.transform.position = barPosition;
     }
 
 
@@ -69,10 +69,7 @@ public class TargetInfo : MonoBehaviour
     private void OnEnable()
     {
         mine.OnMineInitialized += Initialize;
-        MinePanel.OnTargetChanged += UpdateTargetText;
-
-        Mine.OnAnyProgressMade += UpdatePercentMined;
-        mine.OnColorChanged += SetColorOfBars;
+        
     }
 
 
@@ -84,6 +81,17 @@ public class TargetInfo : MonoBehaviour
 
     private void Initialize()
     {
+        if (!data.hasTarget)
+        {
+            gameObject.SetActive(false);
+            return;
+        }
+        
+        
+        MinePanel.OnTargetChanged += UpdateTargetText;
+        Mine.OnAnyProgressMade += UpdatePercentMined;
+        mine.OnColorChanged += SetColorOfBars;
+        
         UpdateTargetText();
         UpdatePercentMined();
         SetBars();

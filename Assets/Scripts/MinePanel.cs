@@ -22,6 +22,8 @@ public class MinePanel : UIPanel
 
     [SerializeField]
     private GlobalSettings settings;
+    
+    [SerializeField] Toggle hasTargetToggle;
 
     [SerializeField]
     private Transform colorButtonContainer;
@@ -35,13 +37,15 @@ public class MinePanel : UIPanel
     {
         mine = m;
         nameEditor.MainText = mine.Data.mineName;
-        targetEditor.MainText = "Target " + (mine.Data.miningTargetPercent * 100f).ToString("F0") + "%";       
+        targetEditor.MainText = "Target " + (mine.Data.miningTargetPercent * 100f).ToString("F0") + "%";  
+        hasTargetToggle.isOn = mine.Data.hasTarget;
     }
 
 
     protected override void OnEnable()
     {
         base.OnEnable();
+        hasTargetToggle.onValueChanged.AddListener(OnTargetToggleChanged);
         PickColorBTN.EvtColorPicked += ChangeMineColor;
         nameEditor.EvtInputFieldWasOpened += SetNamePlaceHolder;
         nameEditor.EvtTextWasEdited += ChangeName;
@@ -49,6 +53,12 @@ public class MinePanel : UIPanel
         targetEditor.EvtInputFieldWasOpened += SetTargetPlaceHolder;
         targetEditor.EvtTextWasEditedAsFloat += ChangeMiningTarget;
 
+        UpdateTargetText();
+    }
+
+    void OnTargetToggleChanged(bool value)
+    {
+        mineData.hasTarget = value;
         UpdateTargetText();
     }
 

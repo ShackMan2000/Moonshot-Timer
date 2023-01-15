@@ -52,7 +52,10 @@ public class TargetManager : MonoBehaviour
     {
         //to not divide by 0
         float totalSecondsMined = 1f;
-        foreach (var m in SaveManager.Data.activeMinesData)
+        
+        
+        
+        foreach (var m in SaveManager.Data.activeMinesData.Where(m  => m.hasTarget ))
         {
             totalSecondsMined += m.secondsMinedSinceReset;
         }
