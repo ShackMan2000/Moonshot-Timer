@@ -1,0 +1,106 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6413d227a9b64b80b1c2c62ce34e5daa, type: 3}
+  m_Name: Inspiration Quotes
+  m_EditorClassIdentifier: 
+  <Quotes>k__BackingField:
+  - "\u201CNever give up on a dream just because of the time it will take to accomplish
+    it. The time will pass anyway.\u201D \u2014Earl Nightingale"
+  - "\u201CMake each day your masterpiece.\u201D \u2014John Wooden"
+  - "\u201CDon\u2019t count the days, make the days count.\u201D \u2014Muhammad Ali"
+  - "\u201CYou get to decide where your time goes. You can either spend it moving
+    forward, or you can spend it putting out fires. You decide. And if you don\u2019t
+    decide, others will decide for you.\u201D \u2014Tony Morgan"
+  - " \u201CBelieve you can and you\u2019re halfway there.\u201D \u2014Theodore Roosevelt"
+  - " \u201CThe only way to do great work is to love what you do. If you haven\u2019t
+    found it yet, keep looking. Don\u2019t settle.\u201D \u2014Steve Jobs"
+  - "\u201CEven if you\u2019re on the right track, you\u2019ll get run over if you
+    just sit there.\u201D \u2014Will Rogers"
+  - " \u201CNothing can stop the man with the right mental attitude from achieving
+    his goal. Nothing on earth can help the man with the wrong attitude.\u201D \u2014Thomas
+    Jefferson"
+  - "\u201CSuccess is the sum of small efforts repeated day in and day out.\u201D
+    \u2014Robert Collier"
+  - "\u201CYour imagination is your preview of life\u2019s coming attractions.\u201D
+    \u2014Albert Einstein"
+  - "\u201CVery often a change of self is needed more than a change of scene.\u201D
+    \u2014Arthur Christopher Benson"
+  - "\u201CIf you don\u2019t design your own life plan, chances are you\u2019ll fall
+    into someone else\u2019s plan and guess what they have planned for you? Not much.\u201D
+    \u2014Jim Rohn"
+  - "\u201CIt takes courage to grow up and become who you really are.\u201D \u2014e.e.
+    cummings   "
+  - "\u201CWhat we fear of doing most is usually what we most need to do.\u201D \u2014Ralph
+    Waldo Emerson"
+  - "\u201CSuccess only comes to those who dare to attempt.\u201D \u2014Mallika Tripathi"
+  - "\u201CThe size of your success is measured by the strength of your desire, the
+    size of your dream, and how you handle disappointment along the way.\u201D \u2014Robert
+    Kiyosaki"
+  - "Your results are the product of either personal focus or personal distractions.
+    The choice is yours. \u2013 John Di Lemme"
+  - "You can\u2019t do big things if you\u2019re distracted by small things."
+  - "Don\u2019t be on your deathbed someday, having squandered your one chance at
+    life, full of regret because you pursued little distractions instead of big dreams.
+    \u2013 Derek Sivers"
+  - "We rarely find answers in the distractions. But oh what possibilities live within
+    the quiet of solitude. \u2013 Scott Stabile"
+  - "One way to boost our will power and focus is to manage our distractions instead
+    of letting them manage us. \u2013 Daniel Goleman"
+  - "Whenever you want to achieve something, keep your eyes open, concentrate and
+    make sure you know exactly what it is you want. No one can hit their target with
+    their eyes closed. \u2013 Paulo Coelho"
+  - "Most of the people in the world are just distracted and work only on the surface
+    but if you will be deep enough to concentrate and study or rehearse anything,
+    the world will bow in honor of you. \u2013 Sunday Adelaja"
+  - "Keep making a difference out there! Don\u2019t let the noise around you distract
+    you from listening to the voice within you. \u2013 Farshad Asl"
+  - "To choose art means to turn one\u2019s back on the world, or at least on certain
+    of its distractions. \u2013 Melvin Maddocks"
+  - Certain things catch your eye but pursue only those that capture the heart.
+  - "Never pay attention to the distractions in life. Focus on possibilities. \u2013
+    Lailah Gifty Akita"
+  - "Don\u2019t let mediocrity distract you from greatness. \u2013 Asad Meah"
+  - "Say no to distraction so you can say yes to your destiny. \u2013 Thema Davis"
+  - "You will never reach your destination if you stop and throw stones at every
+    dog that barks. \u2013 Winston S. Churchill"
+  - "Stop letting other people hijack your day. \u2013 Frank Sonnenberg"
+  - "I don\u2019t focus on what I\u2019m up against. I focus on my goals and I try
+    to ignore the rest. \u2013 Venus Williams"
+  - "Focus on what you can control and let go of what you can\u2019t."
+  - "Social media not only snatches your time, but it also teaches you attention
+    deficiency. \u2013 Neeraj Agnihotri"
+  - "Be so busy improving yourself that you don\u2019t have time to pay attention
+    to anything or anyone that distracts you from your growth."
+  - "How tragic it is to find that an entire lifetime is wasted in pursuit of distractions
+    while purpose is neglected. \u2013 Sunday Adelaja"
+  - "An addiction to distraction is the end of your creative production. \u2013 Robin
+    Sharma"
+  - "Be aware when distractions come your way. You\u2019ll know it\u2019s a distraction
+    when you stop doing what you\u2019re supposed to be doing and find yourself pondering
+    things that have no value. \u2013 Beverly R. Imes"
+  - "Until you shut down the doors to distractions you are not yet ready to succeed.
+    \u2013 Topsy Gift"
+  - "What sets disciplined people apart? \u2013 The capacity to get past distractions.
+    Focus on the task at hand. \u2013 Bill Parcells"
+  - Stop getting distracted by things that have nothing to do with your goals.
+  - "Distractions destroy action. If it\u2019s not moving you towards your purpose,
+    leave it alone. \u2013 Jermaine Riley"
+  - "Focus on your goal. Don\u2019t look in any direction but ahead."
+  - "Win or lose you will never regret working hard, making sacrifices, being disciplined
+    or focusing too much. \u2013 John Smith"
+  - "If you understand that a wasted time is a wasted life, you will start running
+    away from television, you will begin to run away from movies, you will run away
+    from games like criminal case and candy crush. \u2013 Sunday Adelaja"
+  - "Focus is a matter of deciding what things you\u2019re not going to do. \u2013
+    John Carmack"
+  - 
+  - 

@@ -46,6 +46,7 @@ public class Mine : MonoBehaviour, IClickable
     public event Action OnMineStarted = delegate { };
     public event Action OnMineStopped = delegate { };
     public event Action OnProgressMade = delegate { };
+    public static event Action OnBlockFinished = delegate {  }; 
 
   //  public static event Action OnAnyMineStarted = delegate { };
     public static event Action OnAnyProgressMade = delegate { };
