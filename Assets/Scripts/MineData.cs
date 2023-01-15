@@ -30,7 +30,6 @@ public class MineData
     public List<float> distractedSecondsMinedPerDay = new List<float>();
     public List<float> focusedSecondsMinedPerDay = new List<float>();
 
-    public float secondsInTank;
 
     public string note;
     public bool isArchived;

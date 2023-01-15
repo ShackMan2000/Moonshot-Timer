@@ -6,8 +6,7 @@ public class ShowAddButtons : MonoBehaviour
 {
 
 
-    [SerializeField]
-    private UIPanel buttonsContainer;
+    [SerializeField] UIPanel buttonsContainer;
 
 
 

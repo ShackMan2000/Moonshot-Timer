@@ -20,8 +20,7 @@ public class StoneBlock : MonoBehaviour
 
     [SerializeField] GlobalSettings settings;
 
-    [SerializeField]
-    private SpriteMask mask;
+    [SerializeField] SpriteMask mask;
     public float MiningSpot => mask.transform.position.x + mask.sprite.bounds.size.x;
 
     float maskWidth;
@@ -32,7 +31,7 @@ public class StoneBlock : MonoBehaviour
     public event Action OnStoneBlockSetUp = delegate { };
 
 
-    private void OnEnable()
+    void OnEnable()
     {
         mine.OnMineInitialized += SetUp;
         mine.OnProgressMade += AdjustCoalMask;
@@ -86,8 +85,7 @@ public class StoneBlock : MonoBehaviour
     }
 
 
-
-    private void OnDisable()
+    void OnDisable()
     {
         mine.OnMineInitialized -= SetUp;
         mine.OnProgressMade -= AdjustCoalMask;

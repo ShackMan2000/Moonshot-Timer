@@ -7,21 +7,20 @@ using System;
 
 public class Music : MonoBehaviour
 {
-    [SerializeField]
-    private Slider volumeSlider, maxVolumeSlider;
+    [SerializeField] Slider volumeSlider, maxVolumeSlider;
 
-    private AudioSource audioSource;
+    AudioSource audioSource;
 
-    private float maxVolume;
+    float maxVolume;
 
     bool isIncreasingVolume;
 
 
     [SerializeField] AudioClip focusMusic;
     [SerializeField] AudioClip rocketMusic;
-  
 
-    private void Awake()
+
+    void Awake()
     {
         audioSource = GetComponent<AudioSource>();
         audioSource.volume = 0f;
@@ -38,31 +37,29 @@ public class Music : MonoBehaviour
     }
 
 
-
-
-    private void OnEnable()
+    void OnEnable()
     {
         Dude.OnMineGotStarted += MuteMusic;
         Dude.OnMineGotStopped += SmoothlyIncreaseVolume;
 
-        Rocket.OnRocketLaunched += SwitchToRocketMusic;
-        Rocket.OnRocketDone += SwitchToFocusMusic;
+        Tank.OnRocketLaunched += SwitchToRocketMusic;
+        Tank.OnRocketDone += SwitchToFocusMusic;
     }
 
-    private void SwitchToFocusMusic()
+    void SwitchToFocusMusic()
     {
         audioSource.clip = focusMusic;
         audioSource.Play();
     }
 
-    private void SwitchToRocketMusic()
+    void SwitchToRocketMusic()
     {
         audioSource.clip = rocketMusic;
         audioSource.Play();
         SmoothlyIncreaseVolume();
     }
 
-    private void VolumeToSlider(float value)
+    void VolumeToSlider(float value)
     {
         audioSource.volume = value;
     }
@@ -77,9 +74,7 @@ public class Music : MonoBehaviour
     }
 
 
-
-
-    private IEnumerator SmoothlyIncreaseVolumeRoutine()
+    IEnumerator SmoothlyIncreaseVolumeRoutine()
     {
         isIncreasingVolume = true;
         float lastSetVolume = 0f;

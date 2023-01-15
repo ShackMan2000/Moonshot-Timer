@@ -6,18 +6,15 @@ using UnityEngine;
 public class Dude : MonoBehaviour, IClickable
 {
 
-    [SerializeField]
-    private Animator animator;
+    [SerializeField] Animator animator;
 
     [SerializeField] List<SpriteRenderer> renderers;
 
-    [SerializeField]
-    private Mine mine;
+    [SerializeField] Mine mine;
 
     [SerializeField] StoneBlock stoneBlock;
 
-    [SerializeField]
-    private float miningGap;
+    [SerializeField] float miningGap;
 
     bool isMining;
 
@@ -28,7 +25,7 @@ public class Dude : MonoBehaviour, IClickable
     public static event Action OnMineGotStarted = delegate { };
     public static event Action OnMineGotStopped = delegate { };
 
-    private void OnEnable()
+    void OnEnable()
     {
         OnMineGotStarted += StopMiningBusiness;
         mine.OnProgressMade += SetPosition;
@@ -38,13 +35,13 @@ public class Dude : MonoBehaviour, IClickable
         GetComponent<Animator>().SetFloat("offset", UnityEngine.Random.Range(0.0f, 1.0f));
     }
 
-    private void SetUp()
+    void SetUp()
     {
         SetPosition();
         SetColor(mine.ColorPack);
     }
 
-    private void SetColor(ColorPack colorPack)
+    void SetColor(ColorPack colorPack)
     {
         foreach (var r in renderers)
         {
@@ -89,7 +86,7 @@ public class Dude : MonoBehaviour, IClickable
     }
 
 
-    private void OnDisable()
+    void OnDisable()
     {   
         mine.OnProgressMade -= SetPosition;
     }

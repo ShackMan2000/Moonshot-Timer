@@ -9,10 +9,9 @@ public class EditTextField : UIPanel
 
 
 
-    [SerializeField]
-    private Transform topContainer;
+    [SerializeField] Transform topContainer;
 
-    private Transform originalContainer;
+    Transform originalContainer;
 
     public void OpenEditField(Transform originalParent = null)
     {
@@ -41,8 +40,7 @@ public class EditTextField : UIPanel
     }
 
 
-
-    private void ChangeParentToOriginal()
+    void ChangeParentToOriginal()
     {
 
             transform.SetParent(originalContainer);

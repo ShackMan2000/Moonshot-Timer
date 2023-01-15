@@ -13,23 +13,19 @@ public class MinePanel : UIPanel
 
     [SerializeField] TextMeshProUGUI unassignedTargetText;
 
-    [SerializeField]
-    private MineCreator mineMan;
+    [SerializeField] MineCreator mineMan;
 
     [SerializeField] Mine mine;
 
     MineData mineData => mine.Data;
 
-    [SerializeField]
-    private GlobalSettings settings;
+    [SerializeField] GlobalSettings settings;
     
     [SerializeField] Toggle hasTargetToggle;
 
-    [SerializeField]
-    private Transform colorButtonContainer;
+    [SerializeField] Transform colorButtonContainer;
 
-    [SerializeField]
-    private PickColorBTN pickColorBTNprefab;
+    [SerializeField] PickColorBTN pickColorBTNprefab;
 
     public static event Action OnTargetChanged = delegate{};
 
@@ -63,17 +59,17 @@ public class MinePanel : UIPanel
     }
 
 
-    private void Start()
+    void Start()
     {
         SetUpPickColorButtons();        
     }
 
-    private void SetNamePlaceHolder()
+    void SetNamePlaceHolder()
     {
         nameEditor.SetPlaceHolderText(mineData.mineName);
     }
 
-    private void SetTargetPlaceHolder()
+    void SetTargetPlaceHolder()
     {
         targetEditor.SetPlaceHolderText((mineData.miningTargetPercent * 100f).ToString("F0") + "%");
     }
@@ -89,10 +85,8 @@ public class MinePanel : UIPanel
     //    noteText.SetPlaceHolderText(mine.data.note);
     //}
 
- 
 
-
-    private void SetUpPickColorButtons()
+    void SetUpPickColorButtons()
     {
         foreach (var colorPack in settings.allColorPacks)
         {
@@ -102,7 +96,7 @@ public class MinePanel : UIPanel
     }
 
 
-    private void ChangeName(string newName) => mine.MineName = newName;
+    void ChangeName(string newName) => mine.MineName = newName;
     
 
 
@@ -120,14 +114,13 @@ public class MinePanel : UIPanel
     }
 
 
-    private void ChangeMineColor(ColorPack newColor)
+    void ChangeMineColor(ColorPack newColor)
     {
         mine.ChangeColor(newColor);
     }
 
 
-
-    private void ChangeRank(string obj)
+    void ChangeRank(string obj)
     {
      
     }

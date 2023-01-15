@@ -40,7 +40,8 @@ public class TargetInfo : MonoBehaviour
 
     public Transform pointerrrrr;
     public Vector3 barPosition;
-    private void Update()
+
+    void Update()
     {
         barPosition = fullOpacityBar.transform.position;
        // barPosition.y += fullOpacityBar.rectTransform.sizeDelta.y;
@@ -66,20 +67,20 @@ public class TargetInfo : MonoBehaviour
     
     }
 
-    private void OnEnable()
+    void OnEnable()
     {
         mine.OnMineInitialized += Initialize;
         
     }
 
 
-    private void Start()
+    void Start()
     {
         MarkBarPositions();
         UpdatePercentMined();
     }
 
-    private void Initialize()
+    void Initialize()
     {
         if (!data.hasTarget)
         {

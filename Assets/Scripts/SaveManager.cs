@@ -43,21 +43,21 @@ public class SaveManager : MonoBehaviour
 
     public bool saveGameLoaded;
 
-    [SerializeField] private int currentDataID;
+    [SerializeField] int currentDataID;
 
-    [SerializeField] private float saveIntervall;
+    [SerializeField] float saveIntervall;
 
     public static event Action<SaveData> OnSaveDataReady = delegate { };
 
 
-    private void Start()
+    void Start()
     {
         GetSaveFromDisk();
         StartCoroutine(SaveRoutine());
     }
 
 
-    private void GetSaveFromDisk()
+    void GetSaveFromDisk()
     {
         string data0AsJson = FileManager.ReadFile(gameDataFileName0);
         string data1AsJson = FileManager.ReadFile(gameDataFileName1);
@@ -100,7 +100,7 @@ public class SaveManager : MonoBehaviour
     }
 
 
-    private IEnumerator SaveRoutine()
+    IEnumerator SaveRoutine()
     {
         if (saveIntervall < 1f)
             saveIntervall = 10f;
@@ -119,7 +119,7 @@ public class SaveManager : MonoBehaviour
     // File.WriteAllText(filePath, dataAsJson);
     //string filePath = Path.Combine(Application.streamingAssetsPath, gameDataFileName);
 
-    private void SaveToLocal()
+    void SaveToLocal()
     {
         string dataAsJson = JsonUtility.ToJson(saveData);
 
@@ -144,7 +144,7 @@ public class SaveManager : MonoBehaviour
     }
 
 
-    private void OnMineGotDeleted(MineData deletedMine)
+    void OnMineGotDeleted(MineData deletedMine)
     {
         saveData.activeMinesData.Remove(deletedMine);
     }

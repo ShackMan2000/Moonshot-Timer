@@ -47,7 +47,7 @@ public class Clouds : MonoBehaviour
     }
 
 
-    private void Update()
+    void Update()
     {
         if(spawnClouds)
         {

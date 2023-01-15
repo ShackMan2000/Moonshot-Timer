@@ -7,15 +7,13 @@ using UnityEngine;
 public class TargetManager : MonoBehaviour
 {
 
-    [SerializeField]
-    private GlobalSettings settings;
+    [SerializeField] GlobalSettings settings;
 
     //private List<Mine> activeM, minesBelowTarget;
 
 
 
-    [SerializeField]
-    private MineCreator mineMan;
+    [SerializeField] MineCreator mineMan;
 
 
 

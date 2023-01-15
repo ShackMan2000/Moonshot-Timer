@@ -9,29 +9,25 @@ public class GameManager : MonoBehaviour
 {
 
 
-    [SerializeField]
-    private Text currentTimeText;
+    [SerializeField] Text currentTimeText;
 
 
-
-    private bool isMusicPlaying;
+    bool isMusicPlaying;
 
     public int dayOfYear;
 
-    [SerializeField]
-    private GameObject overviewPanel;
+    [SerializeField] GameObject overviewPanel;
 
     public float secondsPerClass;
 
-    [SerializeField]
-    private float tickTime;
+    [SerializeField] float tickTime;
 
-    private float counter;
+    float counter;
 
-    private bool classPaused = true;
+    bool classPaused = true;
 
 
-    private SaveManager saveManager;
+    SaveManager saveManager;
     public SaveData saveData;
 
  //   private ChallengeProgress rewardBar;
@@ -46,10 +42,7 @@ public class GameManager : MonoBehaviour
     //public static int resetsCount;
 
 
-
-
-
-    private void Awake()
+    void Awake()
     {
       //  saveManager = FindObjectOfType<SaveManager>();
       //  saveData = saveManager.saveData;

@@ -7,11 +7,10 @@ using UnityEngine.UI;
 public class PickColorBTN : MonoBehaviour
 {
 
-    [SerializeField]
-    private Image mainImage;
+    [SerializeField] Image mainImage;
 
 
-    private ColorPack colorPack;
+    ColorPack colorPack;
 
     public static event Action<ColorPack> EvtColorPicked = delegate { };
 

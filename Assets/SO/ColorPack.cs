@@ -28,7 +28,8 @@ public class ColorPack : ScriptableObject
 
 
     public string UID;
-    private void OnValidate()
+
+    void OnValidate()
     {
        
 

@@ -6,16 +6,11 @@ public class ButtonPanel : MonoBehaviour
 {
   
 
-    [SerializeField]
-    private GameObject[]  buttons;
+    [SerializeField] GameObject[]  buttons;
     public bool showAlways;
 
 
-
-
-
-
-            private void Awake()
+    void Awake()
     {
         
         //OnMouseExit();

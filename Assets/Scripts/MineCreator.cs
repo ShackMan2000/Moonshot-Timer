@@ -8,20 +8,17 @@ using Sirenix.OdinInspector;
 
 public class MineCreator : MonoBehaviour
 {
-    private SaveData saveData;
+    SaveData saveData;
 
-    [SerializeField]
-    private Mine minePF;
+    [SerializeField] Mine minePF;
 
     public List<Mine> allMines;
 
 
-    [SerializeField]
-    private GlobalSettings settings;
+    [SerializeField] GlobalSettings settings;
 
 
-    [SerializeField]
-    private Vector2 firstMinePosition;
+    [SerializeField] Vector2 firstMinePosition;
 
     [SerializeField] Transform placeHolderMine;
 
@@ -32,21 +29,21 @@ public class MineCreator : MonoBehaviour
     public static event Action OnMinesAreAllSetUp = delegate { };
 
 
-    private void Awake()
+    void Awake()
     {
         allMines = new List<Mine>();
         Application.targetFrameRate = 60;
     }
 
 
-    private void OnEnable()
+    void OnEnable()
     {
         SaveManager.OnSaveDataReady += CreateMinesFromSaveData;
         Mine.EvtMineDeleted += OnMineGotDeleted;
     }
 
 
-    private void CreateMinesFromSaveData(SaveData data)
+    void CreateMinesFromSaveData(SaveData data)
     {
         saveData = data;
 
@@ -64,8 +61,7 @@ public class MineCreator : MonoBehaviour
     }
 
 
-
-    private MineData CreateNewMineData()
+    MineData CreateNewMineData()
     {
         MineData newData = new MineData(GetLowestAvailableID(), "new mine", "colorName");
 
@@ -78,8 +74,7 @@ public class MineCreator : MonoBehaviour
     }
 
 
-
-    private Mine CreateMineObjectFromData(MineData data)
+    Mine CreateMineObjectFromData(MineData data)
     {
         Mine newMine = Instantiate(minePF, transform);
 
@@ -165,11 +160,7 @@ public class MineCreator : MonoBehaviour
     }
 
 
-
-
-
-
-    private void OnMineGotDeleted(MineData deletedMine)
+    void OnMineGotDeleted(MineData deletedMine)
     {
         //no longer needed? Mines won't be destroyed anyway, but use pool and disable too many
 
@@ -188,10 +179,7 @@ public class MineCreator : MonoBehaviour
     void SetPlaceHolderMineAsStartPosition() => firstMinePosition = placeHolderMine.position;
 
 
-
-
-
-    private void OnDisable()
+    void OnDisable()
     {
         SaveManager.OnSaveDataReady -= CreateMinesFromSaveData;
         //        Mine.EvtTargetChanged -= SetTargetText;

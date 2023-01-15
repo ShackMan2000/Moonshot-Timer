@@ -5,23 +5,21 @@ using UnityEngine;
 public class CameraScaler : MonoBehaviour
 {
 
-    [SerializeField]
-    private Transform leftAnchor, rightAnchor;
+    [SerializeField] Transform leftAnchor, rightAnchor;
 
 
-    private Camera cam;
+    Camera cam;
 
 
     public bool scaleEveryFrame;
 
 
-
-    private void Awake()
+    void Awake()
     {
         cam = GetComponent<Camera>();
     }
 
-    private void Start()
+    void Start()
     {
         ScaleCamera();
     }
@@ -31,7 +29,7 @@ public class CameraScaler : MonoBehaviour
 
     public float screenAspect, screenWdith, campixelwidth;
 
-    private void Update()
+    void Update()
     {
 
         screenWdith = Screen.width;
@@ -49,7 +47,7 @@ public class CameraScaler : MonoBehaviour
 
 
     [ContextMenu("Scale Camera")]
-    private void ScaleCamera()
+    void ScaleCamera()
     {
         screenAspect = (float)Screen.width / (float)Screen.height;
         cam.aspect = screenAspect;

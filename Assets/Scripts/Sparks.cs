@@ -17,7 +17,7 @@ public class Sparks : MonoBehaviour
 
     [SerializeField] Mine mine;
 
-    private void OnEnable()
+    void OnEnable()
     {
         mine.OnColorChanged += SetMaterialColor;
         dude.OnAxeHitsStone += EmitSparks;
@@ -44,8 +44,7 @@ public class Sparks : MonoBehaviour
     }
 
 
-
-    private void OnDisable()
+    void OnDisable()
     {
         mine.OnColorChanged -= SetMaterialColor;
         dude.OnAxeHitsStone -= EmitSparks;

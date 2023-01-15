@@ -9,12 +9,11 @@ public class Mine : MonoBehaviour, IClickable
     MineData data;
     public MineData Data { get => data; }
 
-    private float tickIntervall = 0.25f;
+    float tickIntervall = 0.25f;
 
-    private float tickCounter;
+    float tickCounter;
 
-    [SerializeField]
-    private GlobalSettings settings;
+    [SerializeField] GlobalSettings settings;
 
     bool isGettingMined;
   
@@ -62,12 +61,11 @@ public class Mine : MonoBehaviour, IClickable
     public static event Action OnAnyMineStarted = delegate { };
 
 
-
-    private void OnEnable()
+    void OnEnable()
     {
         Dude.OnMineGotStarted += StopMining;
-        Rocket.OnRocketLaunched += LockDuringLaunch;
-        Rocket.OnRocketDone += Unlock;
+        Tank.OnRocketLaunched += LockDuringLaunch;
+        Tank.OnRocketDone += Unlock;
 
     }
 
@@ -88,7 +86,7 @@ public class Mine : MonoBehaviour, IClickable
 
 
     [ContextMenu("update")]
-    private void UpdatePerDaysLists()
+    void UpdatePerDaysLists()
     {
         if (DayManager.daysSinceBeginning >= data.distractedSecondsMinedPerDay.Count)
         {
@@ -117,7 +115,7 @@ public class Mine : MonoBehaviour, IClickable
     [Button]
     void FiveLEftleft() => data.secondsLeftThisCycle = 5f;
 
-    private void Update()
+    void Update()
     {
         if (isGettingMined)
         {
@@ -150,7 +148,6 @@ public class Mine : MonoBehaviour, IClickable
 
         data.secondsMinedSinceReset += secondsTicked;
         data.distractedSecondsMinedPerDay[data.distractedSecondsMinedPerDay.Count - 1] += secondsTicked;
-        data.secondsInTank += secondsTicked;
 
         OnAnyProgressMade();
         OnProgressMade();

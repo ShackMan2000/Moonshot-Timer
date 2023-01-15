@@ -7,16 +7,13 @@ using UnityEngine.UI;
 
 public class CameraMovement : MonoBehaviour
 {
-    [SerializeField]
-    private Camera cam;   
+    [SerializeField] Camera cam;   
 
-    [SerializeField]
-    private GraphicRaycaster graphicRayCaster;
+    [SerializeField] GraphicRaycaster graphicRayCaster;
 
     [SerializeField] GlobalSettings settings;
 
-    [SerializeField]
-    private EventSystem eventSystem;
+    [SerializeField] EventSystem eventSystem;
 
     [SerializeField] Transform rocket;
 
@@ -35,7 +32,7 @@ public class CameraMovement : MonoBehaviour
 
     Vector3 bottomAnchorOriginalPosition;
 
-    private void Awake()
+    void Awake()
     {      
         bottomAnchorOriginalPosition = bottomAnchor.position;
         pointerData = new PointerEventData(null);
@@ -45,36 +42,34 @@ public class CameraMovement : MonoBehaviour
 
     // lower limit must be low enough to not 
 
-    private void OnEnable()
+    void OnEnable()
     {
-        Rocket.OnRocketLaunched += TrackRocket;
-        Rocket.OnRocketDone += StopTrackingRocket;
+        Tank.OnRocketLaunched += TrackRocket;
+        Tank.OnRocketDone += StopTrackingRocket;
         MineCreator.OnActiveMinesChanged += MoveBottomAnchor;
     }
 
-    private void MoveBottomAnchor()
+    void MoveBottomAnchor()
     {
         int mineCount = SaveManager.Data.activeMinesData.Count;
         bottomAnchor.position = bottomAnchorOriginalPosition - new Vector3(0f, settings.mineHeight * mineCount, 0f);
     }
 
-    private void StopTrackingRocket()
+    void StopTrackingRocket()
     {
         isTrackingRocket = false;
         transform.position = positionBeforeTrackingRocket;
     }
 
 
-
-    private void TrackRocket()
+    void TrackRocket()
     {
         positionBeforeTrackingRocket = transform.position;
         isTrackingRocket = true;
     }
 
 
-
-    private void LateUpdate()
+    void LateUpdate()
     {
         if (isTrackingRocket)
         {
@@ -85,7 +80,7 @@ public class CameraMovement : MonoBehaviour
     }
 
 
-    private void PanCamera()
+    void PanCamera()
     {
         pointerData.position = Input.mousePosition;
 
@@ -123,9 +118,7 @@ public class CameraMovement : MonoBehaviour
     }
 
 
-
-
-    private Vector3 ClampCamera(Vector3 targetPosition)
+    Vector3 ClampCamera(Vector3 targetPosition)
     {
         float camHeight = cam.orthographicSize;
       //  float camWidth = cam.orthographicSize * cam.aspect;
@@ -144,12 +137,10 @@ public class CameraMovement : MonoBehaviour
     }
 
 
-
-
-    private void OnDisable()
+    void OnDisable()
     {
-        Rocket.OnRocketLaunched -= TrackRocket;
-        Rocket.OnRocketDone -= StopTrackingRocket;
+        Tank.OnRocketLaunched -= TrackRocket;
+        Tank.OnRocketDone -= StopTrackingRocket;
     }
 
 }

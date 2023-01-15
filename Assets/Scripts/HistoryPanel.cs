@@ -15,12 +15,10 @@ public class HistoryPanel : UIPanel
 
  
 
-    [SerializeField]
-    private SaveManager saveMan;
+    [SerializeField] SaveManager saveMan;
 
 
-    [SerializeField]
-    private TextMeshProUGUI totalText, coreText, otherText, achievementText;
+    [SerializeField] TextMeshProUGUI totalText, coreText, otherText, achievementText;
 
 
 
@@ -116,41 +114,30 @@ public class HistoryPanel : UIPanel
     }
 
 
+    int daysShowing;
+    [SerializeField] GameManager gameManager;
 
 
+    [SerializeField] TextMeshProUGUI[] progressTexts;
 
-    private int daysShowing;
-    [SerializeField]
-
-
-    private GameManager gameManager;
-
-
-    [SerializeField]
-    private TextMeshProUGUI[] progressTexts;
-
-    [SerializeField]
-    private TextMeshProUGUI sevenDayTotalText, loosingTodayText, gainingTodayText, last7LessTodayText;
+    [SerializeField] TextMeshProUGUI sevenDayTotalText, loosingTodayText, gainingTodayText, last7LessTodayText;
 
 
     //[SerializeField]
     //private Text[] yInfos;
 
-    private int maxBarsAtNormalScale;
+    int maxBarsAtNormalScale;
 
-    private List<float> daysShowingValue;
-    private List<OverviewBar> barsShowing;
-
-
-    [SerializeField]
-    private GameObject barPrefab;
-    [SerializeField]
-    private GameObject barContainer;
-    private float highestProgress = 0f;
+    List<float> daysShowingValue;
+    List<OverviewBar> barsShowing;
 
 
+    [SerializeField] GameObject barPrefab;
+    [SerializeField] GameObject barContainer;
+    float highestProgress = 0f;
 
-    private float last7;
+
+    float last7;
 
 
 
@@ -158,7 +145,7 @@ public class HistoryPanel : UIPanel
     float refreshCounter;
 
 
-    private void OnEnable()
+    void OnEnable()
     {
         // ChangeNumberOfDaysDisplayed("7");
         // ShowLast20Days();
@@ -175,7 +162,7 @@ public class HistoryPanel : UIPanel
     }
 
 
-    private void Show7DayTotal()
+    void Show7DayTotal()
     {
         last7 = 0f;
 
@@ -201,7 +188,7 @@ public class HistoryPanel : UIPanel
     }
 
 
-    private void Update()
+    void Update()
     {
         refreshCounter -= Time.deltaTime;
 
@@ -214,13 +201,7 @@ public class HistoryPanel : UIPanel
     }
 
 
-
-
-
-
-
-
-    private void ShowLast20Days()
+    void ShowLast20Days()
     {
 
         for (int i = 0; i < progressTexts.Length; i++)

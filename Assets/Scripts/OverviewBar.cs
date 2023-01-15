@@ -8,17 +8,15 @@ public class OverviewBar : MonoBehaviour
 
 
     public Text dayText;
-    [SerializeField]
-    private Text progressThatDay;
+    [SerializeField] Text progressThatDay;
 
 
 
     public int day;
 
-    [SerializeField]
-    private Image barFill;
+    [SerializeField] Image barFill;
 
-    private GameManager timer;
+    GameManager timer;
 
     void Awake()
     {

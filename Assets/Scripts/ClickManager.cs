@@ -9,30 +9,26 @@ public class ClickManager : MonoBehaviour
 {
 
 
-    [SerializeField]
-    private Camera cam;
+    [SerializeField] Camera cam;
 
 
-    [SerializeField]
-    private GraphicRaycaster graphicRayCaster;
+    [SerializeField] GraphicRaycaster graphicRayCaster;
 
-    [SerializeField]
-    private EventSystem eventSystem;
+    [SerializeField] EventSystem eventSystem;
 
-    private PointerEventData pointerData;
+    PointerEventData pointerData;
 
 
-    [SerializeField]
-    private MinePanel minePanel;
+    [SerializeField] MinePanel minePanel;
 
- 
-    private void Awake()
+
+    void Awake()
     {
         pointerData = new PointerEventData(null);
     }
 
 
-    private void OnEnable()
+    void OnEnable()
     {
         Mine.OnMineClicked += OpenMinePanel;
     }
@@ -40,20 +36,14 @@ public class ClickManager : MonoBehaviour
     public static event Action<int, UIPanel> CloseAllPanels = delegate { };
 
 
-
-    private void OpenMinePanel(Mine m)
+    void OpenMinePanel(Mine m)
     {
         minePanel.InjectMineData(m);
         minePanel.OpenPanel();
     }
 
 
-
-    
-
-
-
-    private void Update()
+    void Update()
     {
         if (Input.GetMouseButtonDown(0))
         {
@@ -110,8 +100,7 @@ public class ClickManager : MonoBehaviour
     }
 
 
-
-    private void OnDisable()
+    void OnDisable()
     {
         Mine.OnMineClicked -= OpenMinePanel;
     }

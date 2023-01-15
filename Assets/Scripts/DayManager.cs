@@ -15,7 +15,7 @@ public class DayManager : MonoBehaviour
 
     static DateTime today;
 
-    private void OnEnable()
+    void OnEnable()
     {
         SaveManager.OnSaveDataReady += CheckToMarkBeginning;
         SaveManager.OnSaveDataReady += SetDaysSinceBeginning;
@@ -24,14 +24,8 @@ public class DayManager : MonoBehaviour
 
     public static int GetDayOfWeek() => (int)today.DayOfWeek;
 
-        
 
-
-
-    
-   
-
-    private void CheckToMarkBeginning(SaveData data)
+    void CheckToMarkBeginning(SaveData data)
     {
         if (!data.beginningIsMarked)
         {
@@ -46,8 +40,7 @@ public class DayManager : MonoBehaviour
     }
 
 
-
-    private void SetDaysSinceBeginning(SaveData data)
+    void SetDaysSinceBeginning(SaveData data)
     {
         if (DateTime.TryParse(data.beginning, out DateTime beginning))
         {
@@ -76,7 +69,7 @@ public class DayManager : MonoBehaviour
     public int showDaysSinceBeginning;
     public string showTodayAsString;
 
-    private void Update()
+    void Update()
     {
         showTodayAsString = GetCurrentDateForDisplay();
         showDaysSinceBeginning = daysSinceBeginning;

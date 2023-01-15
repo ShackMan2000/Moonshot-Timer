@@ -3,16 +3,18 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using System;
+using UnityEngine.Serialization;
 
 public class MenuBar : MonoBehaviour
 {
     [SerializeField] TextMeshProUGUI todayText;
 
-    [SerializeField] TextMeshProUGUI progressQuickInfo;
+    [SerializeField] TextMeshProUGUI dailyProgressText;
+    [SerializeField] TextMeshProUGUI weeklyProgressText;
 
     [SerializeField] GlobalSettings settings;
 
-    private void OnEnable()
+    void OnEnable()
     {
         DayManager.OnCurrentDaySet += SetCurrentDateText;
 
@@ -20,23 +22,25 @@ public class MenuBar : MonoBehaviour
         Mine.OnAnyProgressMade += UpdateQuickInfo;
     }
 
-    private void UpdateQuickInfo()
+    void UpdateQuickInfo()
     {
-        float progressToday = Progress.GetProgressLastXDays(1) / settings.secondsPerBlock;
-        float progressThisWeek = Progress.GetTotalProgressThisWeek() / settings.secondsPerBlock;
+        float totalProgressToday = Progress.GetTotalProgressToday / settings.secondsPerBlock;
+        float focusedProgressToday = Progress.GetFocusedProgressToday / settings.secondsPerBlock;
 
-        progressQuickInfo.text = progressToday.ToString("F3") + "/" + progressThisWeek.ToStringTrimed(1);
+        float totalProgressWeek = Progress.GetTotalProgressThisWeek() / settings.secondsPerBlock;
+        float focusedProgressWeek = Progress.GetFocusedProgressThisWeek() / settings.secondsPerBlock;
+
+        dailyProgressText.text = totalProgressToday.ToString("F1") + "(" + (focusedProgressToday * 100f /totalProgressToday).ToString("F0") + " %F)";
+        weeklyProgressText.text = totalProgressWeek.ToString("F1") + "(" + (focusedProgressWeek * 100f /totalProgressWeek).ToString("F0") + " %F)";
     }
 
-    private void SetCurrentDateText()
+    void SetCurrentDateText()
     {
         todayText.text = DayManager.GetCurrentDateForDisplay();
     }
 
 
-
-
-    private void OnDisable()
+    void OnDisable()
     {
 
         DayManager.OnCurrentDaySet -= SetCurrentDateText;

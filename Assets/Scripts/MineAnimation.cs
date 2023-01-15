@@ -8,20 +8,17 @@ public class MineAnimation : MonoBehaviour
 
 
 
-    [SerializeField]
-    private GlobalSettings settings;
+    [SerializeField] GlobalSettings settings;
 
 
-    [SerializeField]
-    private float maxPileSize;
+    [SerializeField] float maxPileSize;
     //just scale it for now? maybe later use different sprites
 
-    private float pileSize;
+    float pileSize;
 
-    private Mine mine;
+    Mine mine;
 
-    [SerializeField]
-    private Transform pileTransform;
+    [SerializeField] Transform pileTransform;
 
     //[SerializeField]
     //private SpriteRenderer pileMainColor, pileShadowColor, pileHighlightColor;
@@ -30,14 +27,13 @@ public class MineAnimation : MonoBehaviour
 
     //placeholder until there is an elevator to pick it up
 
-    private float pickUpTime, pickUpCounter;
+    float pickUpTime, pickUpCounter;
 
 
     //when mine ticks, adjust size of pile
 
 
-
-    private void Awake()
+    void Awake()
     {
         mine = GetComponent<Mine>();
        // mine.EvtThisMineTicked += OnMineTicked;
@@ -70,7 +66,7 @@ public class MineAnimation : MonoBehaviour
     //}
 
 
-    private void OnMineStopped()
+    void OnMineStopped()
     {
 
         

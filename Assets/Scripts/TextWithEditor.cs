@@ -13,7 +13,7 @@ public class TextWithEditor : MonoBehaviour
 
     public bool onlyAvailableName;
 
-    private List<string> unavailableNames;
+    List<string> unavailableNames;
 
 
     //name already taken is difficult bc it has no clue what kind of data it needs to check against. So either give it a method 
@@ -24,26 +24,21 @@ public class TextWithEditor : MonoBehaviour
     //public bool onlyClampedFloat;
     //private float minValue, maxValue;
 
-    [SerializeField]
-    private EditTextField editField;
+    [SerializeField] EditTextField editField;
 
-    private bool inEditMode;
+    bool inEditMode;
 
-    [SerializeField]
-    private TextMeshProUGUI mainText, infoText;
+    [SerializeField] TextMeshProUGUI mainText, infoText;
 
-    [SerializeField]
-    private TMP_InputField inputField;
+    [SerializeField] TMP_InputField inputField;
 
     //[SerializeField]
     //private Button resetBtn;
 
 
+    bool allowLineBreaks;
 
-    private bool allowLineBreaks;
-
-    [SerializeField]
-    private string main, info;
+    [SerializeField] string main, info;
 
 
 
@@ -88,7 +83,7 @@ public class TextWithEditor : MonoBehaviour
     //}
 
 
-    private void Awake()
+    void Awake()
     {
 
         infoText.text = info;
@@ -144,11 +139,7 @@ public class TextWithEditor : MonoBehaviour
     }
 
 
-
-
-
-
-    private void CheckInput(string input)
+    void CheckInput(string input)
     {
         if (onlyFloats)
         {
@@ -214,7 +205,7 @@ public class TextWithEditor : MonoBehaviour
     public int vCounter;
 
 
-    private void Update()
+    void Update()
     {
         if(Input.GetKeyDown(KeyCode.Space))
         {
@@ -223,7 +214,7 @@ public class TextWithEditor : MonoBehaviour
         }
     }
 
-    private void ValidateInput(string input)
+    void ValidateInput(string input)
     {
         if (input == "n")
             nCounter++;

@@ -18,14 +18,14 @@ public class MineNameAndTimeDisplay : MonoBehaviour
 
     // needs to know when name was changed
 
-    private void OnEnable()
+    void OnEnable()
     {
         mine.OnMineInitialized += ConnectToMineData;
         mine.OnProgressMade += UpdateTimeText;
         mine.OnNameChanged += SetNameText;
     }
 
-    private void ConnectToMineData()
+    void ConnectToMineData()
     {
         SetNameText();
         UpdateTimeText();
@@ -37,11 +37,9 @@ public class MineNameAndTimeDisplay : MonoBehaviour
     }
    
     void SetNameText() => nameText.text = mine.Data.mineName;
-    
 
 
-
-    private void OnDisable()
+    void OnDisable()
     {
         mine.OnMineInitialized -= ConnectToMineData;
         mine.OnProgressMade -= UpdateTimeText;

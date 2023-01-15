@@ -7,17 +7,13 @@ using System;
 public class ResetPanel : UIPanel
 {
 
-    [SerializeField]
-    private SaveManager saveMan;
+    [SerializeField] SaveManager saveMan;
 
-    [SerializeField]
-    private TextMeshProUGUI lastResetText, hoursSinceResetText;
+    [SerializeField] TextMeshProUGUI lastResetText, hoursSinceResetText;
 
-    [SerializeField]
-    private GlobalSettings settings;
+    [SerializeField] GlobalSettings settings;
 
-    [SerializeField]
-    private SaveManager saveManager;
+    [SerializeField] SaveManager saveManager;
 
     protected override void OnEnable()
     {
@@ -27,7 +23,7 @@ public class ResetPanel : UIPanel
     }
 
 
-    private void UpdateInfoText(SaveData saveData = null)
+    void UpdateInfoText(SaveData saveData = null)
     {
         
         //float hoursSinceReset = 0f;

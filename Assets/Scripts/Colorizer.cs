@@ -8,20 +8,16 @@ public class Colorizer : MonoBehaviour
 {
 
 
-    [SerializeField]
-    private Image mainImage;
+    [SerializeField] Image mainImage;
 
 
-    [SerializeField]
-    private List<Image> images;
+    [SerializeField] List<Image> images;
 
 
-    [SerializeField]
-    private Color mainColor;
+    [SerializeField] Color mainColor;
 
 
-    [SerializeField]
-    private List<Vector3> colorChangesX10;
+    [SerializeField] List<Vector3> colorChangesX10;
 
     [Header("1 Shadow")]
     [Header("0 Highlight")]
@@ -30,9 +26,7 @@ public class Colorizer : MonoBehaviour
     public ColorPack colorPack;
 
 
-
-
-    private void Start()
+    void Start()
     {
         if (colorPack != null)
             LoadColorPack(colorPack);
@@ -74,11 +68,7 @@ public class Colorizer : MonoBehaviour
     }
 
 
-
-
-
-
-    private float ClampToHueRange(float input)
+    float ClampToHueRange(float input)
     {
         //adding or subtracting values to the original Hue might make it smaller than 0 or bigger than 1
         //make sure it stays in that range, so e.g. 1.3f becomes 0.3f, and -0.2f becomes 0.8f
@@ -95,9 +85,7 @@ public class Colorizer : MonoBehaviour
     }
 
 
-
-
-    private void OnValidate()
+    void OnValidate()
     {
         if (mainImage != null)
             SetColors(mainColor);
@@ -110,7 +98,7 @@ public class Colorizer : MonoBehaviour
 
 
     [ContextMenu("Load")]
-    private void LoadColorPackInEditor()
+    void LoadColorPackInEditor()
     {
         if (colorPack != null)
             LoadColorPack(colorPack);
