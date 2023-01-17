@@ -23,6 +23,7 @@ public class DayManager : MonoBehaviour
 
 
     public static int GetDayOfWeek() => (int)today.DayOfWeek;
+    public static int GetDayOfMonth() => today.Day;
 
 
     void CheckToMarkBeginning(SaveData data)
@@ -66,6 +67,7 @@ public class DayManager : MonoBehaviour
 
 
 
+    //for debug only
     public int showDaysSinceBeginning;
     public string showTodayAsString;
 

@@ -19,7 +19,6 @@ using UnityEngine;
         void OnEnable()
         {
             Mine.OnBlockFinished += OpenPanel;
-            quoteText.text = inspirationQuotes.GetRandomQuote();
         }
 
 
@@ -27,20 +26,28 @@ using UnityEngine;
         void OpenPanel(Mine mine)
         {
             this.mine = mine;
+            quoteText.text = inspirationQuotes.GetRandomQuote();
             panel.gameObject.SetActive(true);
         }
         
         
-        public void ClosePanel(bool wasFocused)
+        public void FinishBlock(bool wasFocused)
         {
             if(wasFocused)
             {
                 mine.ConvertSecondsToFocusedSeconds();
             }
             
-            
+            ClosePanel();
+        }
+        
+        
+        //close panel
+        public void ClosePanel()
+        {
             panel.gameObject.SetActive(false);
         }
+        
 
 
         void OnDisable()

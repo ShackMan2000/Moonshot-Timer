@@ -3,269 +3,125 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using System;
+using Sirenix.OdinInspector;
+using UnityEngine.UI;
 
 public class HistoryPanel : UIPanel
 {
+    [SerializeField] GlobalSettings settings;
+
+    [SerializeField] TextMeshProUGUI mineStatsTextPrefab;
+
+    [SerializeField] Transform mineStatsParent;
+
+    [SerializeField] Button showTodayBtn;
+    [SerializeField] Button showWeekBtn;
+    [SerializeField] Button showMonthBtn;
+
+    List<TextMeshProUGUI> mineStatsTextsPool = new List<TextMeshProUGUI>();
+    List<TextMeshProUGUI> activeMineStatsTexts = new List<TextMeshProUGUI>();
 
 
-
-    //get all mines, including the archived ones, and add to the total
-    //is there any point in seeing which mine each day? not really
-    //so just get the number.
-
- 
-
-    [SerializeField] SaveManager saveMan;
+    void Awake()
+    {
+        showTodayBtn.onClick.AddListener(() => ShowUnitsMined(TimeRange.Day));
+        showWeekBtn.onClick.AddListener(() => ShowUnitsMined(TimeRange.Week));
+        showMonthBtn.onClick.AddListener(() => ShowUnitsMined(TimeRange.Month));
+    }
 
 
-    [SerializeField] TextMeshProUGUI totalText, coreText, otherText, achievementText;
-
-
-
+    [Button]
     public override void OpenPanel()
     {
         base.OpenPanel();
-
-        //save last opening
-        ShowUnitsMined(DayManager.daysSinceBeginning, 1);
+        ShowUnitsMined(TimeRange.Day);
     }
 
-    //need to get core of today and this week
 
-    
-
-
-    public void  ShowUnitsMined(int startingDay, int daysToCheck)
+    public void ShowUnitsMined(TimeRange range)
     {
-        //float unitsMinedCore = 0f;
-        //float unitsMinedOther = 0f;
-        //float unitsAchievement = 0f;   
+        foreach (var s in activeMineStatsTexts)
+        {
+            mineStatsTextsPool.Add(s);
+            s.gameObject.SetActive(false);
+        }
         
+        activeMineStatsTexts.Clear();
 
-        //foreach (var mine in saveMan.saveData.mineDatas)
-        //{
-        //    for (int i = startingDay; i > startingDay - daysToCheck; i--)
-        //    {
-
-        //        if (i < 0) break;
-
-        //        if (i < mine.unitsPerDay.Count)
-        //        {
-        //            if (mine.isCore)
-        //                unitsMinedCore += mine.unitsPerDay[i];
-        //            else
-        //                unitsMinedOther += mine.unitsPerDay[i];
-        //        }
-        //    }
-        //}
+        float totalSecondsAllMines = 0f;
+        float focusSecondsAllMines = 0f;
 
 
-      
-
-
-        //totalText.text = "Total: " + (unitsMinedCore + unitsMinedOther + unitsAchievement).ToString("F1");
-        //coreText.text = "Core : " + unitsMinedCore.ToString("F1");
-        //otherText.text = "Other " + unitsMinedOther.ToString("F1");
-        //achievementText.text = "Achievements: " + unitsAchievement.ToStringTrimed(2);        
-    }
-
-
-
-
-
-
-
-
-    public void ShowLastX(int lastX)
-    {
-        ShowUnitsMined(DayManager.daysSinceBeginning, lastX);
-    }
-
-
-
-    public void ShowThisWeek()
-    {
-        // start today, but only show last x days until monday
-        // so get day of week, 
-        int dayOfWeek =  (int) DateTime.Now.DayOfWeek;
-        if (dayOfWeek == 0)
-            dayOfWeek = 7;
-
-        ShowUnitsMined(DayManager.daysSinceBeginning, dayOfWeek);     
-    }
-
-
-
-
-  
-
-
-
-
-
-    public void ShowLastWeek()
-    {
-        //int dayOfWeek = (int)DateTime.Now.DayOfWeek;
-        //if (dayOfWeek == 0)
-        //    dayOfWeek = 7;
-
-     //   ShowUnitsMined(DayManager.currentDay - 7, dayOfWeek);
-
-    }
-
-
-    int daysShowing;
-    [SerializeField] GameManager gameManager;
-
-
-    [SerializeField] TextMeshProUGUI[] progressTexts;
-
-    [SerializeField] TextMeshProUGUI sevenDayTotalText, loosingTodayText, gainingTodayText, last7LessTodayText;
-
-
-    //[SerializeField]
-    //private Text[] yInfos;
-
-    int maxBarsAtNormalScale;
-
-    List<float> daysShowingValue;
-    List<OverviewBar> barsShowing;
-
-
-    [SerializeField] GameObject barPrefab;
-    [SerializeField] GameObject barContainer;
-    float highestProgress = 0f;
-
-
-    float last7;
-
-
-
-
-    float refreshCounter;
-
-
-    void OnEnable()
-    {
-        // ChangeNumberOfDaysDisplayed("7");
-        // ShowLast20Days();
-        // Show7DayTotal();
-        refreshCounter = 1f;
-    }
-
-
-    public float GetWeeklyProgress()
-    {
-
-        return 0f;
-
-    }
-
-
-    void Show7DayTotal()
-    {
-        last7 = 0f;
-
-        for (int i = 1; i < 8; i++)
+        foreach (var mine in SaveManager.Data.activeMinesData)
         {
+            float totalSeconds = 0f;
+            float focusSeconds = 0f;
 
-            //  last7 += gameManager.saveData.progressByDays[gameManager.dayOfYear - i];
-            //    print(i + "adding " + gameManager.saveData.progressByDays[gameManager.dayOfYear - i] + "= " + last7);
-        }
-
-        sevenDayTotalText.SetText(last7.ToString("F1"));
-
-
-        //float loosingToday = gameManager.saveData.progressByDays[gameManager.dayOfYear - 7];
-        //float gainingToday = gameManager.saveData.progressByDays[gameManager.dayOfYear];
-        //float last7LessToday = (last7 + gainingToday) - loosingToday;
-
-        //loosingTodayText.text = (-loosingToday).ToString("F1");
-        //gainingTodayText.text = (+gainingToday).ToString("F1");
-        //last7LessTodayText.text = last7LessToday.ToString("F1");
-
-
-    }
-
-
-    void Update()
-    {
-        refreshCounter -= Time.deltaTime;
-
-        if (refreshCounter < 0)
-        {
-            refreshCounter = 1f;
-            //Show7DayTotal();
-
-        }
-    }
-
-
-    void ShowLast20Days()
-    {
-
-        for (int i = 0; i < progressTexts.Length; i++)
-        {
-            // progressTexts[i].SetText(gameManager.saveData.progressByDays[gameManager.dayOfYear-i].ToString("F2"));
-        }
-    }
-
-
-
-
-    public void ChangeNumberOfDaysDisplayed(string newNumber)
-    {
-        daysShowing = System.Convert.ToInt32(newNumber);
-        daysShowingValue = new List<float>();
-        if (barsShowing != null)
-            foreach (var bar in barsShowing)
+            switch (range)
             {
-                Destroy(bar.gameObject);
+                case TimeRange.Day:
+                    totalSeconds = Progress.GetTotalSecondsToday(mine);
+                    focusSeconds = Progress.GetFocusedSecondsToday(mine);
+                    break;
+                case TimeRange.Week:
+                    totalSeconds = Progress.GetTotalSecondsThisWeek(mine);
+                    focusSeconds = Progress.GetFocusedSecondsThisWeek(mine);
+                    break;
+                case TimeRange.Month:
+                    totalSeconds = Progress.GetTotalSecondsThisMonth(mine);
+                    focusSeconds = Progress.GetFocusedSecondsThisMonth(mine);
+                    break;
             }
-        barsShowing = new List<OverviewBar>();
 
+            totalSecondsAllMines += totalSeconds;
+            focusSecondsAllMines += focusSeconds;
 
-        for (int i = 0; i < daysShowing; i++)
-        {
-            var dayFetched = System.DateTime.Now.DayOfYear - daysShowing + i;
-            if (dayFetched <= 0)
-                dayFetched += 365;
-
-            //  daysShowingValue.Add(timer.saveData.progressByDays[dayFetched]);
-
-            OverviewBar newBar = Instantiate(barPrefab).GetComponent<OverviewBar>();
-            newBar.dayText.text = (i + 1).ToString();
-            newBar.day = dayFetched;
-            newBar.transform.SetParent(barContainer.transform);
-            newBar.transform.localScale = new Vector3(1, 1, 1);
-
-
-            barsShowing.Add(newBar);
-
-            if (daysShowingValue[i] > highestProgress)
-                highestProgress = daysShowingValue[i];
-
-        }
-        foreach (var bar in barsShowing)
-        {
-
-            bar.SetFillAmount(highestProgress);
+            if (totalSeconds > 10f)
+            {
+                string statsAsString =
+                    mine.mineName + " " + (totalSeconds / settings.secondsPerBlock).ToString("F1") + " (" +
+                    ((focusSeconds / totalSeconds) * 100f).ToString("F0") + "% focused)";
+                ShowMineStats(statsAsString);
+            }
         }
 
-        //SetYinfo();
 
+        ShowMineStats("");
+
+
+        string total =
+            "Total " + (totalSecondsAllMines / settings.secondsPerBlock).ToString("F1") + " blocks mined (" +
+            ((focusSecondsAllMines / totalSecondsAllMines) / settings.secondsPerBlock).ToString("F1") + "%)";
+        ShowMineStats(total);
     }
 
 
+    void ShowMineStats(string statsAsString)
+    {
+        //if there is an inactive text object in the pool, activate it and assign the text
+        if (mineStatsTextsPool.Count > 0)
+        {
+            TextMeshProUGUI text = mineStatsTextsPool[0];
+            mineStatsTextsPool.Remove(text);
+            text.gameObject.SetActive(true);
+            text.text = statsAsString;
+            activeMineStatsTexts.Add(text);
+        }
+        //otherwise instantiate one and assign to parent
+        else
+        {
+            TextMeshProUGUI text = Instantiate(mineStatsTextPrefab, mineStatsParent);
+            text.gameObject.SetActive(true);
+            text.text = statsAsString;
+            activeMineStatsTexts.Add(text);
+        }
+    }
+}
 
-    //private void SetYinfo()
-    //{
-    //    float step = 0.25f;
 
-    //    for (int i = 0; i < yInfos.Length; i++)
-    //    {
-    //        yInfos[i].text = (highestProgress - (highestProgress * i * step)).ToString("F1");
-    //    }
-    //}
-
+public enum TimeRange
+{
+    Day,
+    Week,
+    Month
 }
