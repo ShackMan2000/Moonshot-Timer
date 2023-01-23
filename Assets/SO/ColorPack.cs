@@ -17,6 +17,8 @@ public class ColorPack : ScriptableObject
     [ColorUsage(true, true)] public Color gemDarkColor;
     [ColorUsage(true, true)] public Color gemHighlightColor;
 
+    
+    [SerializeField] Material leafMaterial;
 
     [SerializeField]
     public float shadowHueShift, shadowValueShift, shadowSaturationShift;
