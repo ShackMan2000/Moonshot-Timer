@@ -14,24 +14,31 @@ public class MenuBar : MonoBehaviour
 
     [SerializeField] GlobalSettings settings;
 
+    [SerializeField] DateRangeShowing dateRangeShowing;
+
     void OnEnable()
     {
         DayManager.OnCurrentDaySet += SetCurrentDateText;
-
         MineCreator.OnMinesAreAllSetUp += UpdateQuickInfo;
         Mine.OnAnyProgressMade += UpdateQuickInfo;
+        
+        dateRangeShowing.EvtDateRangeChanged += UpdateQuickInfo;
     }
 
     void UpdateQuickInfo()
     {
-        float totalProgressToday = Progress.GetTotalSecondsTodayAllMines() / settings.secondsPerBlock;
-        float focusedProgressToday = Progress.GetFocusedSecondsTodayAllMines() / settings.secondsPerBlock;
+        int today = DayManager.daysSinceBeginning;
 
-        float totalProgressWeek = Progress.GetTotalSecondsThisWeekAllMines() / settings.secondsPerBlock;
-        float focusedProgressWeek = Progress.GetFocusedSecondsThisWeekAllMines() / settings.secondsPerBlock;
+        float totalProgressToday = Progress.GetTotalSecondsAllMines(today, today) / settings.secondsPerBlock;
+        float focusedProgressToday = Progress.GetFocusedSecondsAllMines(today, today) / settings.secondsPerBlock;
 
-        dailyProgressText.text = totalProgressToday.ToString("F1") + "(" + (focusedProgressToday * 100f /totalProgressToday).ToString("F0") + " %F)";
-        weeklyProgressText.text = totalProgressWeek.ToString("F1") + "(" + (focusedProgressWeek * 100f /totalProgressWeek).ToString("F0") + " %F)";
+
+        // show whatever the range is
+        float totalProgressRange = Progress.GetTotalSecondsAllMinesForRangeShowing(dateRangeShowing) / settings.secondsPerBlock;
+        float focusedProgressRange = Progress.GetTotalSecondsAllMinesForRangeShowing(dateRangeShowing) / settings.secondsPerBlock;
+
+        dailyProgressText.text = totalProgressToday.ToString("F1") + "(" + (focusedProgressToday * 100f / totalProgressToday).ToString("F0") + " %F)";
+        weeklyProgressText.text = totalProgressRange.ToString("F1") + "(" + (focusedProgressRange * 100f / totalProgressRange).ToString("F0") + " %F)";
     }
 
     void SetCurrentDateText()
@@ -42,13 +49,9 @@ public class MenuBar : MonoBehaviour
 
     void OnDisable()
     {
-
         DayManager.OnCurrentDaySet -= SetCurrentDateText;
 
         MineCreator.OnMinesAreAllSetUp -= UpdateQuickInfo;
         Mine.OnAnyProgressMade -= UpdateQuickInfo;
-
     }
-
 }
-

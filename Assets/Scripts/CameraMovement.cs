@@ -44,8 +44,7 @@ public class CameraMovement : MonoBehaviour
 
     void OnEnable()
     {
-        Tank.OnRocketLaunched += TrackRocket;
-        Tank.OnRocketDone += StopTrackingRocket;
+      
         MineCreator.OnActiveMinesChanged += MoveBottomAnchor;
     }
 
@@ -55,28 +54,30 @@ public class CameraMovement : MonoBehaviour
         bottomAnchor.position = bottomAnchorOriginalPosition - new Vector3(0f, settings.mineHeight * mineCount, 0f);
     }
 
-    void StopTrackingRocket()
-    {
-        isTrackingRocket = false;
-        transform.position = positionBeforeTrackingRocket;
-    }
+    public float sensitivity = 1.0f;
 
+    private Vector3 lastPosition;
 
-    void TrackRocket()
+    void Update()
     {
-        positionBeforeTrackingRocket = transform.position;
-        isTrackingRocket = true;
+        if (Input.GetMouseButtonDown(0))
+        {
+            lastPosition = Input.mousePosition;
+        }
+        if (Input.GetMouseButton(0))
+        {
+            Vector3 delta = Input.mousePosition - lastPosition;
+            transform.position += new Vector3(0, -delta.y * sensitivity, 0);
+            lastPosition = Input.mousePosition;
+        }
     }
+  
+
 
 
     void LateUpdate()
     {
-        if (isTrackingRocket)
-        {
-            transform.position = transform.position.Set(y: rocket.position.y);
-        }
-        else
-            PanCamera();
+       // PanCamera();
     }
 
 
@@ -139,8 +140,7 @@ public class CameraMovement : MonoBehaviour
 
     void OnDisable()
     {
-        Tank.OnRocketLaunched -= TrackRocket;
-        Tank.OnRocketDone -= StopTrackingRocket;
+      
     }
 
 }

@@ -77,6 +77,7 @@ public class MineCreator : MonoBehaviour
     Mine CreateMineObjectFromData(MineData data)
     {
         Mine newMine = Instantiate(minePF, transform);
+        newMine.gameObject.name = "Mine " + data.mineName; 
 
         allMines.Add(newMine);
 

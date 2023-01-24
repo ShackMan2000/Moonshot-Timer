@@ -2006,7 +2006,6 @@ MonoBehaviour:
   mine: {fileID: 3807007859205499079}
   targetPointer: {fileID: 5552820257010571463}
   realMinedPointer: {fileID: 5495805935034755274}
-  moveToBar: 0
   pointerrrrr: {fileID: 0}
   barPosition: {x: 0, y: 0, z: 0}
 --- !u!1 &3327006385359754685
@@ -3106,7 +3105,7 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6536747847933882099}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 7.67}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.02, y: 0.02, z: 0.1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -4485,7 +4484,7 @@ PrefabInstance:
     - target: {fileID: 3341867907064778363, guid: 48341d85d8789d94aad5300dd18baf23,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -0.21
+      value: -0.005
       objectReference: {fileID: 0}
     - target: {fileID: 3341867907064778363, guid: 48341d85d8789d94aad5300dd18baf23,
         type: 3}

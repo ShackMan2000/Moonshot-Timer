@@ -7,11 +7,16 @@ using UnityEngine.Serialization;
 public class DateRangeShowing : ScriptableObject
 {
     public DateRangeType dateRangeSelected;
-    
-    public event Action<DateRangeType> OnDateRangeChanged = delegate { };
+
+    public event Action EvtDateRangeChanged = delegate { };
+
+    public int StartDay => Detail.StartDay;
+    public int EndDay => Detail.EndDay;
+    public DateTime StartDate => Detail.StartDate;
+    public DateTime EndDate => Detail.EndDate;
 
     [field: SerializeField] public DateRangeDetail Detail { get; private set; }
-    
+
     [field: SerializeField] public string StartDateAsString { get; private set; }
     [field: SerializeField] public string EndDateAsString { get; private set; }
 
@@ -19,22 +24,13 @@ public class DateRangeShowing : ScriptableObject
     {
         dateRangeSelected = dateRangeType;
         Detail = DayManager.ConvertDateRangeToDetail(dateRangeType);
-        
+
+
         StartDateAsString = Detail.StartDate.ToString("dd/MM/yyyy");
         EndDateAsString = Detail.EndDate.ToString("dd/MM/yyyy");
-        OnDateRangeChanged(dateRangeType);
+        EvtDateRangeChanged();
     }
-    
-    
-    public DateTime StartDate { get; set; }
-    public DateTime EndDate { get; set; }
-        
-    public int StartDay { get; set; }
-    public int EndDay { get; set; }
-
 }
-
-
 
 
 public enum DateRangeType
@@ -46,4 +42,3 @@ public enum DateRangeType
     Last30Days,
     Custom
 }
-

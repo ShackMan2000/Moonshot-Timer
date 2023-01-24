@@ -32,7 +32,7 @@ public class HistoryPanel : UIPanel
     protected override void OnEnable()
     {
         base.OnEnable();
-        dateRangeShowing.OnDateRangeChanged += ShowStatsForDateRange;
+        dateRangeShowing.EvtDateRangeChanged += ShowStatsForDateRange;
     }
 
 
@@ -40,11 +40,12 @@ public class HistoryPanel : UIPanel
     public override void OpenPanel()
     {
         base.OpenPanel();
-        ShowStatsForDateRange(dateRangeShowing.dateRangeSelected);
+        ShowStatsForDateRange();
     }
 
-    void ShowStatsForDateRange(DateRangeType dateRange)
+    void ShowStatsForDateRange()
     {
+        var dateRange = dateRangeShowing.dateRangeSelected;
         dateRangeText.text = dateRangeShowing.Detail.StartDate.ToString("dd/MM/yyyy") + " - " + dateRangeShowing.Detail.EndDate.ToString("dd/MM/yyyy");
     }
 

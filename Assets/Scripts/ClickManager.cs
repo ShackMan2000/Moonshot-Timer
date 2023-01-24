@@ -7,8 +7,6 @@ using UnityEngine.EventSystems;
 
 public class ClickManager : MonoBehaviour
 {
-
-
     [SerializeField] Camera cam;
 
 
@@ -18,6 +16,7 @@ public class ClickManager : MonoBehaviour
 
     PointerEventData pointerData;
 
+    [SerializeField] bool debug;
 
     [SerializeField] MinePanel minePanel;
 
@@ -47,7 +46,6 @@ public class ClickManager : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(0))
         {
-
             //Hitting a UI element?
             pointerData.position = Input.mousePosition;
             List<RaycastResult> results = new List<RaycastResult>();
@@ -59,31 +57,39 @@ public class ClickManager : MonoBehaviour
                 for (int i = 0; i < results.Count; i++)
                 {
                     UIPanel clickedPanel = results[i].gameObject.GetComponent<UIPanel>();
-                    if(clickedPanel != null)
+                    if (clickedPanel != null)
                     {
                         CloseAllPanels(clickedPanel.layer, clickedPanel);
                         return;
                     }
                 }
-                //no UI Panel was clicked, but mouse is over another UI element, so don't check for game objects and return
+
+                if (debug)
+                    Debug.Log("No UIPanel found in raycast results, but another UI element was hit.");
+                
                 return;
             }
 
 
-
-
-
             //No UI element hit, check for clickable objects
 
-            Vector2 mousePos = cam.ScreenToWorldPoint(Input.mousePosition);
-            RaycastHit2D hit = Physics2D.Raycast(mousePos, Vector2.zero);
+          //   Vector2 mousePos = cam.ScreenToWorldPoint(Input.mousePosition);
+            // RaycastHit2D hit = Physics2D.Raycast(mousePos, Vector2.zero);
+            
+           // Ray ray = Camera.main.ScreenPointToRay(mousePos);
+            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+            RaycastHit2D hit = Physics2D.GetRayIntersection(ray, Mathf.Infinity);
+
+          //  RaycastHit2D[] hits = Physics2D.GetRayIntersectionAll(ray, Mathf.Infinity);
+
 
             if (hit)
             {
                 IClickable clickable = hit.collider.GetComponent<IClickable>();
                 clickable?.Click();
-
-
+                
+                if(debug)
+                    Debug.Log("Clicked on " + hit.collider.name);
             }
             else
             {
@@ -91,7 +97,6 @@ public class ClickManager : MonoBehaviour
             }
         }
     }
-
 
 
     public static void CallCloseAllPanels(int layerOpened)
