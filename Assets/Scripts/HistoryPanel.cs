@@ -85,7 +85,7 @@ public class HistoryPanel : UIPanel
         
         string total =
             "Total " + (totalSecondsAllMines / settings.secondsPerBlock).ToString("F1") + " blocks mined (" +
-            ((focusSecondsAllMines / totalSecondsAllMines) / settings.secondsPerBlock).ToString("F1") + "%)";
+            (focusSecondsAllMines / totalSecondsAllMines).ToString("F1") + "%)";
         ShowMineStats(total);
     }
 

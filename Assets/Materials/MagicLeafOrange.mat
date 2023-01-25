@@ -8,7 +8,7 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: MagicLeafOrange
-  m_Shader: {fileID: -6465566751694194690, guid: da591737c3c3abe4787bbd8710206967,
+  m_Shader: {fileID: -6465566751694194690, guid: f2056997b8c5c784ea9729c50c9e9ef8,
     type: 3}
   m_ValidKeywords: []
   m_InvalidKeywords: []
@@ -39,6 +39,7 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
+    - _IsGlowing: 0
     - _QueueControl: 0
     - _QueueOffset: 0
     - _Speed: -0.52

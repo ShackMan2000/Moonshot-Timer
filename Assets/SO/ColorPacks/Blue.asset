@@ -16,6 +16,8 @@ MonoBehaviour:
   gemBaseColor: {r: 0, g: 2.5976276, b: 24.721567, a: 0}
   gemDarkColor: {r: 0.10306159, g: 0.11239871, b: 0.3962264, a: 0}
   gemHighlightColor: {r: 0.6846361, g: 0.74504954, b: 1, a: 0}
+  <LeafMaterial>k__BackingField: {fileID: 2100000, guid: f13074b49155da04d826619590dfc92a,
+    type: 2}
   shadowHueShift: 0.33
   shadowValueShift: -1.23
   shadowSaturationShift: 0.58

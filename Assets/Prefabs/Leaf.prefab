@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 3585710170678108365}
   - component: {fileID: 9205513059059114573}
   - component: {fileID: 1535032222989941888}
+  - component: {fileID: 497284712383900140}
   m_Layer: 0
   m_Name: Leaf
   m_TagString: Untagged
@@ -27,7 +28,7 @@ Transform:
   m_GameObject: {fileID: 7322975066954096566}
   m_LocalRotation: {x: -0.48275006, y: 0.85684323, z: -0.18102449, w: -0.0014818957}
   m_LocalPosition: {x: -0.0031566368, y: -0.010197933, z: -0.019855447}
-  m_LocalScale: {x: 32.81, y: 32.81, z: 32.81}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 0}
@@ -83,3 +84,16 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &497284712383900140
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7322975066954096566}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f340d5d484384533a6b8dc57be1383ae, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  renderer: {fileID: 1535032222989941888}

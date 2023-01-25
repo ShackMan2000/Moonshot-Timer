@@ -17,15 +17,12 @@ public class ColorPack : ScriptableObject
     [ColorUsage(true, true)] public Color gemDarkColor;
     [ColorUsage(true, true)] public Color gemHighlightColor;
 
-    
-    [SerializeField] Material leafMaterial;
 
-    [SerializeField]
-    public float shadowHueShift, shadowValueShift, shadowSaturationShift;
-    [SerializeField]
-    public float highlightHueShift, highlightValueShift, highlightSaturationShift;
-    [SerializeField]
-    public float frameHueShift, frameValueShift, frameSaturationShift;
+    [field: SerializeField] public Material LeafMaterial { get; private set; }
+
+  [SerializeField] public float shadowHueShift, shadowValueShift, shadowSaturationShift;
+    [SerializeField] public float highlightHueShift, highlightValueShift, highlightSaturationShift;
+    [SerializeField] public float frameHueShift, frameValueShift, frameSaturationShift;
 
 
 
