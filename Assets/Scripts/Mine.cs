@@ -64,9 +64,6 @@ public class Mine : MonoBehaviour, IClickable
     void OnEnable()
     {
         Dude.OnMineGotStarted += StopMining;
-        Tank.OnRocketLaunched += LockDuringLaunch;
-        Tank.OnRocketDone += Unlock;
-
     }
 
     public void Initialize(MineData newData)

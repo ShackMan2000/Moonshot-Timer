@@ -42,8 +42,7 @@ public class Music : MonoBehaviour
         Dude.OnMineGotStarted += MuteMusic;
         Dude.OnMineGotStopped += SmoothlyIncreaseVolume;
 
-        Tank.OnRocketLaunched += SwitchToRocketMusic;
-        Tank.OnRocketDone += SwitchToFocusMusic;
+
     }
 
     void SwitchToFocusMusic()

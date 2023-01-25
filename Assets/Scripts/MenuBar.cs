@@ -35,7 +35,7 @@ public class MenuBar : MonoBehaviour
 
         // show whatever the range is
         float totalProgressRange = Progress.GetTotalSecondsAllMinesForRangeShowing(dateRangeShowing) / settings.secondsPerBlock;
-        float focusedProgressRange = Progress.GetTotalSecondsAllMinesForRangeShowing(dateRangeShowing) / settings.secondsPerBlock;
+        float focusedProgressRange = Progress.GetFocusedSecondsAllMinesForRangeShowing(dateRangeShowing) / settings.secondsPerBlock;
 
         dailyProgressText.text = totalProgressToday.ToString("F1") + "(" + (focusedProgressToday * 100f / totalProgressToday).ToString("F0") + " %F)";
         weeklyProgressText.text = totalProgressRange.ToString("F1") + "(" + (focusedProgressRange * 100f / totalProgressRange).ToString("F0") + " %F)";

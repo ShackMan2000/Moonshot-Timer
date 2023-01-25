@@ -13,7 +13,8 @@ public static class Progress
         
         SaveData data = SaveManager.Data;
 
-        float totalSeconds = 0f;
+        //avoid dividing by zero
+        float totalSeconds = 0.00001f;
 
 
         foreach (var mine in data.activeMinesData)
@@ -28,7 +29,7 @@ public static class Progress
 
     static float GetSecondsMinedLastDays(int startDay, int endDay, TypeOfSeconds typeOfTypeOfSeconds, MineData mineData)
     {
-        float secondsMined = 0f;
+        float secondsMined = 0.0001f;
 
         for (int i = startDay; i <= endDay; i++)
         {
@@ -37,6 +38,28 @@ public static class Progress
 
         return secondsMined;
     }
+
+
+    
+    
+    public static List<MineStats> GetMineStatsForRange(DateRangeShowing rangeShowing)
+    {
+        var list = new List<MineStats>();
+        
+        foreach (var mine in SaveManager.Data.activeMinesData)
+        {
+            float secondsMined = GetTotalSecondsForRangeShowing(mine, rangeShowing);
+            float focusedSecondsMined = GetFocusedSecondsForRangeShowing(mine, rangeShowing);
+            
+            list.Add(new MineStats(mine, secondsMined, focusedSecondsMined));
+        }
+        
+        
+        
+        
+        return list;
+    }
+    
     
     public static float GetTotalSecondsAllMinesForRangeShowing(DateRangeShowing dateRangeShowing)
     {
@@ -87,4 +110,19 @@ public static class Progress
     //
     // public static float GetTotalProgressThisMonth() => GetFocusedSecondsMined(DayManager.GetDayOfMonth()) + GetDistractedSecondsMined(DayManager.GetDayOfMonth());
     // public static float GetFocusedProgressThisMonth() => GetFocusedSecondsMined(DayManager.GetDayOfMonth());
+}
+
+
+public class MineStats
+{
+    public MineData mineData;
+    public float totalSecondsMined;
+    public float focusedSecondsMined;
+
+    public MineStats(MineData mineData, float totalSecondsMined, float focusedSecondsMined)
+    {
+        this.mineData = mineData;
+        this.totalSecondsMined = totalSecondsMined;
+        this.focusedSecondsMined = focusedSecondsMined;
+    }
 }
